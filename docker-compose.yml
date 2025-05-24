@@ -4,11 +4,11 @@ services:
     container_name: mqtt-broker
     ports:
       - "1883:1883"
-      - "9001:9001"
+      - "8883:8883"
     volumes:
-      - ./config:/broker/config
-      - ./.data/data:/broker/data
-      - ./.data/log:/broker/log
+      - ./broker/config:/mosquitto/config:rw
+      - ./broker/data:/mosquitto/data:rw
+      - ./broker/log:/mosquitto/log:rw
     restart: unless-stopped
     networks:
       - mqtt-network
