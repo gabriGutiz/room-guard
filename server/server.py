@@ -1,12 +1,13 @@
 import os
+from paho.mqtt.enums import CallbackAPIVersion
 import paho.mqtt.client as mqtt
 import sys
 
 
-BROKER_HOST = os.environ.get("BROKER_HOST", "localhost")
+BROKER_HOST = os.environ.get("BROKER_HOST", "ec2-3-82-138-13.compute-1.amazonaws.com")
 BROKER_PORT = os.environ.get("BROKER_PORT", 1883)
-BROKER_USER = "server"
-BROKER_PWD = "server@pwd1"
+BROKER_USER = "user1"
+BROKER_PWD = "user1"
 
 ROOM_TOPIC = os.environ.get("ROOM_TOPIC", "paho/room")
 MSG_QOS = 0
@@ -41,24 +42,19 @@ def on_connect(client, userdata, flags, reason_code, properties):
 
 
 if __name__ == "__main__":
-    while True:
-        try:
-            mqttc = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
-            mqttc.on_connect = on_connect
-            mqttc.on_message = on_message
-            mqttc.on_subscribe = on_subscribe
-            mqttc.on_unsubscribe = on_unsubscribe
+    try:
+        mqttc = mqtt.Client(CallbackAPIVersion.VERSION2)
+        mqttc.on_connect = on_connect
+        mqttc.on_message = on_message
+        mqttc.on_subscribe = on_subscribe
+        mqttc.on_unsubscribe = on_unsubscribe
 
-            print(f"Connecting to broker {BROKER_HOST}:{BROKER_PORT}")
-            mqttc.username_pw_set(BROKER_USER, BROKER_PWD)
-            mqttc.connect(BROKER_HOST, BROKER_PORT)
-            print("Connected to broker")
-            mqttc.loop_forever()
-            print(f"Received the following message: {mqttc.user_data_get()}")
-            break
-        except KeyboardInterrupt:
-            sys.exit()
-        except:
-            #print("Error receiving message")
-            pass
+        print(f"Connecting to broker {BROKER_HOST}:{BROKER_PORT}")
+        mqttc.username_pw_set(BROKER_USER, BROKER_PWD)
+        mqttc.connect(BROKER_HOST, BROKER_PORT)
+        print("Connected to broker")
+        mqttc.loop_forever()
+        print(f"Received the following message: {mqttc.user_data_get()}")
+    except KeyboardInterrupt:
+        sys.exit()
 
