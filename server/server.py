@@ -11,7 +11,7 @@ from img import is_room_empty
 LOGS_FILE_NAME="server.log"
 
 BROKER_HOST = os.environ.get("BROKER_HOST", "ec2-54-163-19-208.compute-1.amazonaws.com")
-BROKER_PORT = os.environ.get("BROKER_PORT", 1883)
+BROKER_PORT = int(os.environ.get("BROKER_PORT", 1883))
 BROKER_USER = "user1"
 BROKER_PWD = "user1"
 
