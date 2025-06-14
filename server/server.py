@@ -8,9 +8,10 @@ import sys
 from img import is_room_empty
 
 
-LOGS_FILE_NAME="server.log"
+LOGS_FOLDER_NAME = "./logs"
+LOGS_FILE_NAME = LOGS_FOLDER_NAME + "/server.log"
 
-BROKER_HOST = os.environ.get("BROKER_HOST", "ec2-54-163-19-208.compute-1.amazonaws.com")
+BROKER_HOST = os.environ.get("BROKER_HOST", "ec2-52-90-173-232.compute-1.amazonaws.com")
 BROKER_PORT = int(os.environ.get("BROKER_PORT", 1883))
 BROKER_USER = "user1"
 BROKER_PWD = "user1"
@@ -73,6 +74,12 @@ def mqtt_on_message(client, userdata, msg):
 
 if __name__ == "__main__":
     try:
+        if not os.path.exists(LOGS_FOLDER_NAME):
+            print(f"Folder {LOGS_FOLDER_NAME} does not exists. Creating folder...")
+            os.mkdir(LOGS_FOLDER_NAME)
+        else:
+            print(f"Folder {LOGS_FOLDER_NAME} already exists. Skipping mkdir...")
+
         logging.basicConfig(filename=LOGS_FILE_NAME, level=logging.INFO)
 
         mqtt_sub(

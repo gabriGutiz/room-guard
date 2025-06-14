@@ -21,6 +21,8 @@ services:
       BROKER_HOST: "mqtt-broker"
       BROKER_PORT: "1883"
       ROOM_TOPIC: "paho/room"
+    volumes:
+      - ./logs:/usr/src/app/logs:rw
     networks:
       - mqtt-network
 
