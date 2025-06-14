@@ -39,7 +39,7 @@ def _extract_msg_state(msg_body: str) -> RoomState:
     state = RoomState()
     state.room_id = body.get("room_id")
     state.time = body.get("time")
-    state.room_is_empty = is_room_empty(body.get("msg"))
+    state.room_is_empty = is_room_empty(body.get("img"))
     state.door_is_closed = body.get("door_is_closed")
 
     return state
