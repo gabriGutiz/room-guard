@@ -1,6 +1,7 @@
 import boto3
 import json
 import logging
+from mqtt import configure_sub as mqtt_sub
 import os
 from paho.mqtt.enums import CallbackAPIVersion
 import paho.mqtt.client as mqtt
@@ -70,7 +71,7 @@ def process_message(msg_body: str) -> None:
         }
     )
 
-    send_mqtt_message(state.room_id, state.room_is_empty)
+    send_mqtt_message(state.room_id, not state.room_is_empty)
 
 
 def mqtt_on_message(client, userdata, msg):
