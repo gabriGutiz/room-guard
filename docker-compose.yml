@@ -26,6 +26,19 @@ services:
     networks:
       - mqtt-network
 
+  front-back:
+    image: front-back
+    build: ./front/back
+    container_name: front-back
+    ports:
+      - "3000:3000"
+
+  front:
+    image: front
+    build: ./front/front
+    ports:
+      - "8080:80"
+
 networks:
   mqtt-network:
 
