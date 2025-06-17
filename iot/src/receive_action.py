@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 ROOM_ID = "01a24e11-be17-490a-b754-4a92cd0f15a4"
 
-BROKER_HOST = os.environ.get("BROKER_HOST", "ec2-34-230-39-39.compute-1.amazonaws.com")
+BROKER_HOST = os.environ.get("BROKER_HOST", "ec2-44-211-61-87.compute-1.amazonaws.com")
 BROKER_PORT = int(os.environ.get("BROKER_PORT", 1883))
 BROKER_USER = "user1"
 BROKER_PWD = "user1"

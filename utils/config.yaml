@@ -1,4 +1,4 @@
-broker_host: "ec2-34-230-39-39.compute-1.amazonaws.com"
+broker_host: "ec2-44-211-61-87.compute-1.amazonaws.com"
 broker_port: "1883"
 broker_user: "user1"
 broker_pwd: "user1"
