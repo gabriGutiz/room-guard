@@ -1,0 +1,8 @@
+broker_host: "ec2-34-230-39-39.compute-1.amazonaws.com"
+broker_port: "1883"
+broker_user: "user1"
+broker_pwd: "user1"
+broker_room_topic: "paho/room"
+broker_send_action_topic: "paho/room/01a24e11-be17-490a-b754-4a92cd0f15a4"
+busy_img_path: "./data/busy.jpeg"
+free_img_path: "./data/free.jpeg"
