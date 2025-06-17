@@ -1,8 +1,9 @@
 import boto3
 import json
 import logging
-from mqtt import configure_sub as mqtt_sub
 import os
+from paho.mqtt.enums import CallbackAPIVersion
+import paho.mqtt.client as mqtt
 import sys
 
 from img import is_room_empty
@@ -46,6 +47,14 @@ def _extract_msg_state(msg_body: str) -> RoomState:
     return state
 
 
+def send_mqtt_message(room_id: str, is_busy: bool):
+    client = mqtt.Client(CallbackAPIVersion.VERSION2)
+    client.username_pw_set(BROKER_USER, BROKER_PWD)
+    client.connect(BROKER_HOST, BROKER_PORT)
+    client.publish(ROOM_TOPIC + f"/{room_id}", json.dumps({"is_busy": is_busy}))
+    client.disconnect()
+
+
 def process_message(msg_body: str) -> None:
     state = _extract_msg_state(msg_body)
 
@@ -60,6 +69,8 @@ def process_message(msg_body: str) -> None:
             "datetime": state.time
         }
     )
+
+    send_mqtt_message(state.room_id, state.room_is_empty)
 
 
 def mqtt_on_message(client, userdata, msg):
