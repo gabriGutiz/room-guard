@@ -60,6 +60,8 @@ def process_message(msg_body: str) -> None:
     state = _extract_msg_state(msg_body)
 
     if state.room_is_empty:
+        logging.info("THERE IS NO PEOPLE IN THE ROOM")
+    else:
         logging.info("THERE IS PEOPLE IN THE ROOM")
 
     room_guard_table.put_item(
