@@ -18,7 +18,7 @@ from zoneinfo import ZoneInfo
 
 ROOM_ID = "01a24e11-be17-490a-b754-4a92cd0f15a4"
 
-BROKER_HOST = os.environ.get("BROKER_HOST", "ec2-44-211-61-87.compute-1.amazonaws.com")
+BROKER_HOST = os.environ.get("BROKER_HOST", "ec2-44-201-199-224.compute-1.amazonaws.com")
 BROKER_PORT = int(os.environ.get("BROKER_PORT", 1883))
 BROKER_USER = "user1"
 BROKER_PWD = "user1"
@@ -34,7 +34,7 @@ wp.pinMode(DOOR_SENSOR_PIN, wp.GPIO.INPUT)
 
 
 def take_image():
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
 
     if not cap.isOpened():
         print("Can not open camera")
@@ -54,7 +54,7 @@ def take_image():
 
 
 def door_is_closed():
-    door_state = wp.digitalRead(DOOR_SENSOR_PIN)
+    door_state = wp.analogRead(DOOR_SENSOR_PIN)
     print(f"DOOR STATE: {door_state}")
     return door_state == 1
 

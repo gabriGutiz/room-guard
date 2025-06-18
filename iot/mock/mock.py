@@ -6,10 +6,10 @@ import paho.mqtt.client as mqtt
 import time
 
 
-BROKER_HOST = "localhost"
+BROKER_HOST = "ec2-44-201-199-224.compute-1.amazonaws.com"
 BROKER_PORT = 1883
-BROKER_USER = "server"
-BROKER_PWD = "server@pwd1"
+BROKER_USER = "user1"
+BROKER_PWD = "user1"
 
 ROOM_TOPIC = "paho/room"
 MSG_QOS = 0
