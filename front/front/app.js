@@ -5,7 +5,7 @@ async function fetchRooms() {
   table.style.display = 'table';
 
   try {
-    const response = await fetch('http://ec2-44-201-199-224.compute-1.amazonaws.com:3000/rooms');
+    const response = await fetch('http://ec2-54-173-227-179.compute-1.amazonaws.com:3000/rooms');
     const rooms = await response.json();
 
     if (rooms.length === 0) {
