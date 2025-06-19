@@ -23,6 +23,7 @@ services:
       ROOM_TOPIC: "paho/room"
     volumes:
       - ./logs:/usr/src/app/logs:rw
+    restart: unless-stopped
     networks:
       - mqtt-network
 
@@ -30,12 +31,14 @@ services:
     image: front-back
     build: ./front/back
     container_name: front-back
+    restart: unless-stopped
     ports:
       - "3000:3000"
 
   front:
     image: front
     build: ./front/front
+    restart: unless-stopped
     ports:
       - "8080:80"
 
